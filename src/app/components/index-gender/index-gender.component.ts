@@ -1,7 +1,7 @@
-import { Component, OnChanges, OnInit, SimpleChanges, WritableSignal, inject, signal } from '@angular/core';
+import { Component, OnInit, WritableSignal, inject, signal } from '@angular/core';
 import { GenderService } from '../../services/gender/gender.service';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { concat, concatMap } from 'rxjs';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { concatMap } from 'rxjs';
 
 @Component({
   selector: 'app-index-gender',

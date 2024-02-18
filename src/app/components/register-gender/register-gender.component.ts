@@ -2,12 +2,12 @@ import { Component, WritableSignal, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { GenderService } from '../../services/gender/gender.service';
 import { concatMap } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register-gender',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './register-gender.component.html',
 })
 export class RegisterGenderComponent {
