@@ -1,0 +1,107 @@
+<section class="container mx-auto">
+  <div class="navbar bg-base-100">
+    <div class="flex-1">
+      <a class="btn btn-ghost text-xl">Game List</a>
+    </div>
+    <div class="flex-none">
+      <ul class="menu menu-horizontal px-1">
+        <li><a>Genders</a></li>
+        <li><a>Games</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="container mx-auto">
+  <div class="flex justify-between items-center">
+    <div class="text-2xl font-bold p-5">
+      Genders
+    </div>
+    <div class="mr-5">
+      <a routerLink="register" class="btn btn-info btn-active btn-sm">Register</a>
+    </div>
+  </div>
+</section>
+
+@if (getGenderList(); as data) {
+<section class="my-5 container mx-auto">
+  <div class="overflow-x-auto mb-3">
+    <table class="table table-zebra">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Color</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of data.data; track item) {
+        <tr>
+          <th>{{ item.id }}</th>
+          <td>{{ item.name }}</td>
+          <td>
+            <div class="badge badge-primary"></div>
+          </td>
+          <td class="flex gap-2">
+            <button class="btn btn-circle btn-info btn-outline btn-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-4 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+              </svg>
+            </button>
+            <button class="btn btn-circle btn-error btn-outline btn-sm" (click)="toggleDeleteModal(item.id)">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}
+                stroke="currentColor" class="w-5 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </td>
+        </tr>
+        } @empty {
+        <div role="alert" class="alert alert-warning">
+          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <span>Warning! Without genders.</span>
+        </div>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <section class="flex justify-center">
+    <div class="join">
+      @for (item of data.links; track item) {
+      @if(checkLink(item.label)) {
+      <a (click)="callBackList(item.label)" [class.btn-disabled]="item.url === null" [class.btn-active]="item.active"
+        class="join-item btn">
+        {{ item.label }}
+      </a>
+      }
+      }
+    </div>
+  </section>
+</section>
+} @else {
+<div class="mt-5 flex justify-center">
+  <span class="loading loading-spinner text-primary loading-lg"></span>
+</div>
+}
+
+<dialog id="delete-modal" class="modal" [open]="modal()">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">Warning!</h3>
+    <p class="py-4">You really want to delete this gender?</p>
+    <div class="modal-action">
+      <div class="flex gap-2">
+        <button (click)="toggleDeleteModal()" class="btn">Cancel</button>
+        <button (click)="deleteGender(idModal())" class="btn btn-error">Delete</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+<div [class.hidden]="!modal()" class="bg-[#0006] dark:bg-bg-[#0006] fixed inset-0 z-40"></div>
