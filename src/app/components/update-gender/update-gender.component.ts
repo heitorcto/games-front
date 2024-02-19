@@ -4,11 +4,12 @@ import { GenderService } from '../../services/gender/gender.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { concatMap } from 'rxjs';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { TitleComponent } from '../title/title.component';
 
 @Component({
   selector: 'app-update-gender',
   standalone: true,
-  imports: [FormsModule, NavbarComponent],
+  imports: [FormsModule, NavbarComponent, TitleComponent],
   templateUrl: './update-gender.component.html',
 })
 export class UpdateGenderComponent implements OnInit {
