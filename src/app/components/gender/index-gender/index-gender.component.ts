@@ -36,8 +36,7 @@ export class IndexGenderComponent implements OnInit {
     return true;
   }
 
-  public toggleDeleteModal(id?: number)
-  {
+  public toggleDeleteModal(id?: number) {
     if (id) {
       this.idModal.set(id);
     }

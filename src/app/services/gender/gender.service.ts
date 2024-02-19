@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Signal, WritableSignal, inject, signal } from '@angular/core';
-import { Observable, map, share, shareReplay, tap } from 'rxjs';
+import { Observable, shareReplay, tap } from 'rxjs';
 import { Gender } from '../../interfaces/genders/gender';
 import { PayloadGender } from '../../interfaces/genders/payload-gender';
 
@@ -39,18 +39,18 @@ export class GenderService {
     return this.genderItem.asReadonly();
   }
 
-  public httpGenderRegister$(name: string, color: string): Observable<Gender> {
+  public httpGenderRegister$(name: string): Observable<Gender> {
     return this.http.post<Gender>(`${this.url}/register`, {
-      name, color
+      name
     })
       .pipe(
         shareReplay()
       );
   }
 
-  public httpGenderUpdate$(id: number, name: string, color: string): Observable<Gender> {
+  public httpGenderUpdate$(id: number, name: string): Observable<Gender> {
     return this.http.patch<Gender>(`${this.url}/update`, {
-      id, name, color
+      id, name
     })
       .pipe(
         shareReplay()

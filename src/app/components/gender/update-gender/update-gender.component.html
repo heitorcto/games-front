@@ -3,25 +3,20 @@
 <app-title title="Genders" />
 
 @if (getGenderItem(); as data) {
-  <section class="container mx-auto">
-    <form (ngSubmit)="updateGender()" class="grid grid-cols-12 p-5 gap-4">
-      <label class="form-control col-span-12">
-        <div class="label">
-          <span class="label-text">Name</span>
-        </div>
-        <input [(ngModel)]="name" name="name" type="text" placeholder="Type here" class="input input-bordered input-info" [value]="data.name" />
-      </label>
-      <label class="form-control col-span-12">
-        <div class="label">
-          <span class="label-text">Color</span>
-        </div>
-        <input [(ngModel)]="color" name="color" type="text" placeholder="Type here" class="input input-bordered input-info" />
-      </label>
-      <button class="btn btn-info col-span-12 mt-5">Update</button>
-    </form>
-  </section>
+<section class="container mx-auto">
+  <form (ngSubmit)="updateGender()" class="grid grid-cols-12 p-5 gap-4">
+    <label class="form-control col-span-12">
+      <div class="label">
+        <span class="label-text">Name</span>
+      </div>
+      <input [(ngModel)]="name" name="name" type="text" placeholder="Type here" class="input input-bordered input-info"
+        [value]="data.name" />
+    </label>
+    <button class="btn btn-info col-span-12 mt-5">Update</button>
+  </form>
+</section>
 } @else {
-  <div class="mt-5 flex justify-center">
-    <span class="loading loading-spinner text-info loading-lg"></span>
-  </div>
+<div class="mt-5 flex justify-center">
+  <span class="loading loading-spinner text-info loading-lg"></span>
+</div>
 }

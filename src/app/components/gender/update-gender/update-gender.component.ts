@@ -19,7 +19,6 @@ export class UpdateGenderComponent implements OnInit {
   public getGenderItem = this.genderService.genderItem;
   public id: WritableSignal<number> = signal<number>(0);
   public name: WritableSignal<string> = signal<string>('');
-  public color: WritableSignal<string> = signal<string>('');
 
   public ngOnInit(): void {
     this.router.paramMap.subscribe((param) => {
@@ -28,7 +27,6 @@ export class UpdateGenderComponent implements OnInit {
       this.genderService.httpGenderById$(this.id())
         .subscribe((response) => {
           this.name.set(response.name);
-          this.color.set(response.color);
         });
     });
 
@@ -38,10 +36,9 @@ export class UpdateGenderComponent implements OnInit {
     this.genderService.httpGenderUpdate$(
       this.id(),
       this.name(),
-      this.color()
     )
-    .pipe(concatMap(() => this.genderService.httpGenderList$(null)))
-    .subscribe()
+      .pipe(concatMap(() => this.genderService.httpGenderList$(null)))
+      .subscribe()
 
     this.routeRedirect.navigate(['/gender']);
   }

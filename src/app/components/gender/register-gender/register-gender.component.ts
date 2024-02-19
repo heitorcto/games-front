@@ -16,11 +16,10 @@ export class RegisterGenderComponent {
   public router: Router = inject(Router);
   public genderService: GenderService = inject(GenderService);
   public name: WritableSignal<string> = signal<string>('');
-  public color: WritableSignal<string> = signal<string>('');
 
   public registerGender(): void {
     this.genderService
-      .httpGenderRegister$(this.name(), this.color())
+      .httpGenderRegister$(this.name())
       .pipe(concatMap(() => this.genderService.httpGenderList$(null)))
       .subscribe();
 
