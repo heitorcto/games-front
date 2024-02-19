@@ -1,7 +1,7 @@
 import { Link } from "../links/link";
 import { Gender } from "./gender";
 
-export interface Payload {
+export interface PayloadGender {
   current_page: number
   data: Gender[]
   first_page_url: string

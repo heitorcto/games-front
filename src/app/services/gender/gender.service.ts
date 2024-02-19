@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, Signal, WritableSignal, inject, signal } from '@angular/core';
 import { Observable, map, share, shareReplay, tap } from 'rxjs';
 import { Gender } from '../../interfaces/genders/gender';
-import { Payload } from '../../interfaces/genders/payload';
+import { PayloadGender } from '../../interfaces/genders/payload-gender';
 
 @Injectable({
   providedIn: 'root'
@@ -10,20 +10,20 @@ import { Payload } from '../../interfaces/genders/payload';
 export class GenderService {
   private http: HttpClient = inject(HttpClient);
   private url: string = 'http://127.0.0.1:8000/api/genders';
-  public genderList: WritableSignal<Payload | null> = signal<Payload | null>(null);
+  public genderList: WritableSignal<PayloadGender | null> = signal<PayloadGender | null>(null);
   public genderItem: WritableSignal<Gender | null> = signal<Gender | null>(null);
 
-  public httpGenderList$(page: string | null): Observable<Payload> {
+  public httpGenderList$(page: string | null): Observable<PayloadGender> {
     this.genderList.set(null);
 
-    return this.http.get<Payload>(`${this.url}?page=${page}`)
+    return this.http.get<PayloadGender>(`${this.url}?page=${page}`)
       .pipe(
         shareReplay(),
         tap((response) => this.genderList.set(response))
       )
   }
 
-  public getGenderList(): Signal<Payload | null> {
+  public getGenderList(): Signal<PayloadGender | null> {
     return this.genderList.asReadonly();
   }
 

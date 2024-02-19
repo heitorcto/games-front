@@ -1,10 +1,10 @@
 import { Component, OnInit, WritableSignal, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { GenderService } from '../../services/gender/gender.service';
+import { GenderService } from '../../../services/gender/gender.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { concatMap } from 'rxjs';
-import { NavbarComponent } from '../navbar/navbar.component';
-import { TitleComponent } from '../title/title.component';
+import { NavbarComponent } from '../../navbar/navbar.component';
+import { TitleComponent } from '../../title/title.component';
 
 @Component({
   selector: 'app-update-gender',
