@@ -3,11 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { GenderService } from '../../services/gender/gender.service';
 import { concatMap } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-register-gender',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, NavbarComponent],
   templateUrl: './register-gender.component.html',
 })
 export class RegisterGenderComponent {

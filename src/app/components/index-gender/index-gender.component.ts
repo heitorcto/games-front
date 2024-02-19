@@ -2,11 +2,12 @@ import { Component, OnInit, WritableSignal, inject, signal } from '@angular/core
 import { GenderService } from '../../services/gender/gender.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { concatMap } from 'rxjs';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-index-gender',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, NavbarComponent],
   templateUrl: './index-gender.component.html',
 })
 export class IndexGenderComponent implements OnInit {

@@ -1,16 +1,4 @@
-<section class="container mx-auto">
-  <div class="navbar bg-base-100">
-    <div class="flex-1">
-      <a class="btn btn-ghost text-xl">Game List</a>
-    </div>
-    <div class="flex-none">
-      <ul class="menu menu-horizontal px-1">
-        <li><a routerLink="/gender">Genders</a></li>
-        <li><a>Games</a></li>
-      </ul>
-    </div>
-  </div>
-</section>
+<app-navbar />
 
 <section class="container mx-auto">
   <div class="flex justify-between items-center">
@@ -20,20 +8,26 @@
   </div>
 </section>
 
-<section class="container mx-auto">
-  <form (ngSubmit)="updateGender()" class="grid grid-cols-12 p-5 gap-4">
-    <label class="form-control col-span-12">
-      <div class="label">
-        <span class="label-text">Name</span>
-      </div>
-      <input [(ngModel)]="name" name="name" type="text" placeholder="Type here" class="input input-bordered input-info" />
-    </label>
-    <label class="form-control col-span-12">
-      <div class="label">
-        <span class="label-text">Color</span>
-      </div>
-      <input [(ngModel)]="color" name="color" type="text" placeholder="Type here" class="input input-bordered input-info" />
-    </label>
-    <button class="btn btn-info col-span-12 mt-5">Register</button>
-  </form>
-</section>
+@if (getGenderItem(); as data) {
+  <section class="container mx-auto">
+    <form (ngSubmit)="updateGender()" class="grid grid-cols-12 p-5 gap-4">
+      <label class="form-control col-span-12">
+        <div class="label">
+          <span class="label-text">Name</span>
+        </div>
+        <input [(ngModel)]="name" name="name" type="text" placeholder="Type here" class="input input-bordered input-info" [value]="data.name" />
+      </label>
+      <label class="form-control col-span-12">
+        <div class="label">
+          <span class="label-text">Color</span>
+        </div>
+        <input [(ngModel)]="color" name="color" type="text" placeholder="Type here" class="input input-bordered input-info" />
+      </label>
+      <button class="btn btn-info col-span-12 mt-5">Update</button>
+    </form>
+  </section>
+} @else {
+  <div class="mt-5 flex justify-center">
+    <span class="loading loading-spinner text-info loading-lg"></span>
+  </div>
+}
